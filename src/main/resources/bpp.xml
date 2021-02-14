@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="messenger" class="org.example.bpp.Messenger">-->
+<!--        <property name="message" value="Fiona Apple Is Just So Dreamy."/>-->
+<!--    </bean>-->
+
+<!--    <bean class="org.example.bpp.InstantiationTracingBeanPostProcessor"/>-->
+
+    <bean id="myFB" class="org.example.bpp.MyFactoryBean" />
+<!--    <bean id="messenger" class="org.example.bpp.Messenger" factory-bean="myFB" />-->
+
+</beans>
