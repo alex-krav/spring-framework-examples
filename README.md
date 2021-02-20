@@ -1,12 +1,26 @@
 LINKS
 
-https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-metadata
-https://www.baeldung.com/spring-with-maven
-
 https://www.infoworld.com/article/3379043/what-is-jpa-introduction-to-the-java-persistence-api.html
 https://www.tutorialspoint.com/jpa/jpa_orm_components.htm
 https://stackabuse.com/guide-to-jpa-with-hibernate-basic-mapping/
+https://www.baeldung.com/java-dao-pattern
 
+https://www.baeldung.com/java-9-modularity
+https://javarush.ru/groups/posts/2650-ispoljhzovanie-jndi-v-java
+https://www.baeldung.com/jndi
+
+https://github.com/spring-projects/spring-framework/wiki/Spring-Annotation-Programming-Model
+https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-5-FAQ
+https://stackoverflow.com/questions/10664182/what-is-the-difference-between-jdk-dynamic-proxy-and-cglib/24588880#24588880
+
+https://en.wikipedia.org/wiki/Programming_paradigm
+https://www.info.ucl.ac.be/~pvr/paradigms.html
+https://www.janeve.me/software-programming/understanding-programming-paradigms
+
+https://www.baeldung.com/spring-framework-design-patterns
+https://habr.com/ru/post/222579/
+https://habr.com/ru/company/jugru/blog/218203/
+https://habr.com/ru/post/490586/
 
 GIT
 
@@ -28,4 +42,51 @@ Accessing differently scoped target beans
 - org.springframework.beans.factory.config.ServiceLocatorFactoryBean
 
 
+XML configuration
+- doesn't modify source code
+- hierarchy (abstract beans)
+- instance-based (different instantiations of same class)
 
+
+@Bean
+    @Configuration
+        CGLIB
+        inter-bean dependencies
+    @Component / POJO
+        no CGLIB
+        operate on their containing component’s internal state and, optionally, on arguments that they may declare
+
+
+Lifecycle order
+- @PostConstruct
+- InitializingBean::afterPropertiesSet()
+- custom init() method
+
+- @PreDestroy
+- DisposableBean::destroy()
+- custom destroy() method
+
+
+TODO (debug)
++ 1. The @Bean methods in a regular Spring component are processed differently than their counterparts inside a Spring @Configuration class.
++ 2. @Configuration classes are subclassed at startup-time with CGLIB
++ 3. Calls to static @Bean methods never get intercepted by the container, not even within @Configuration classes (as described earlier in this section), due to technical limitations: CGLIB subclassing can override only non-static methods.
++ 4. CGLIB: configuration classes must not be final.
++ 5. Also, be particularly careful with BeanPostProcessor and BeanFactoryPostProcessor definitions through @Bean. Those should usually be declared as static @Bean methods,
++ 6. ScopedProxyMode.TARGET_CLASS vs ScopedProxyMode.INTERFACES
+   ScopedProxyMode.TARGET_CLASS -> cglib
+   ScopedProxyMode.INTERFACES -> com.sun.proxy.$Proxy14
+   
+7. Why? 
+    getInstantiationStrategy() = CGLIB
+    -> SimpleInstantiationStrategy().instantiate()
+        @Configuration -> MyConfig$$EnhancerBySpringCGLIB$$obj
+        @Component     -> MyComponent 
+    
+            spring-beans > ConstructorResolver
+                @Bean
+                    @Component -> MyBean                 -> jdk:invokeStatic 
+                    @Configuration -> enhancer -> MyBean -> jdk:invokeStatic 
+                static @Bean
+                    MyBean                               -> jdk:invokeStatic
+8. Is it possible to turn off Autowired in AnnotationConfigApplicationContext?

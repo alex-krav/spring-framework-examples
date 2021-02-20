@@ -1,4 +1,4 @@
-package org.example.components;
+package org.example.components.filter;
 
 import org.springframework.stereotype.Repository;
 

@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
-        <org.springframework.version>5.3.3</org.springframework.version>
+        <org.springframework.version>5.3.4</org.springframework.version>
     </properties>
 
     <dependencies>
@@ -39,12 +39,22 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-indexer</artifactId>
-            <version>5.3.3</version>
+            <version>${org.springframework.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>repository.spring.snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>https://repo.spring.io/snapshot</url>
+        </repository>
+        <repository>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>https://repo.spring.io/milestone</url>
+        </repository>
         <repository>
             <id>repository.spring.release</id>
             <name>Spring GA Repository</name>

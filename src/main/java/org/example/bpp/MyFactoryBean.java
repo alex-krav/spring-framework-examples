@@ -1,6 +1,7 @@
 package org.example.bpp;
 
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class MyFactoryBean implements FactoryBean<Messenger> {
     @Override

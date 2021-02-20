@@ -22,7 +22,8 @@ public class App_bpp {
 //        System.out.println(dataSource);
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("bpp.xml");
-        Object bean = ctx.getBean("&myFB");
+//        Object bean = ctx.getBean("&myFB");
+        Object bean = ctx.getBean("myFB");
         System.out.println(bean);
     }
 }
