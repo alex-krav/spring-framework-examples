@@ -66,8 +66,13 @@ Lifecycle order
 - DisposableBean::destroy()
 - custom destroy() method
 
+Properties
+- JVM system properties:    System.getProperties(): -D command-line args
+- JVM system environment:   System.getenv():        OS env variables
+- properties files
 
-TODO (debug)
+
+TODO (done)
 + 1. The @Bean methods in a regular Spring component are processed differently than their counterparts inside a Spring @Configuration class.
 + 2. @Configuration classes are subclassed at startup-time with CGLIB
 + 3. Calls to static @Bean methods never get intercepted by the container, not even within @Configuration classes (as described earlier in this section), due to technical limitations: CGLIB subclassing can override only non-static methods.
@@ -89,4 +94,12 @@ TODO (debug)
                     @Configuration -> enhancer -> MyBean -> jdk:invokeStatic 
                 static @Bean
                     MyBean                               -> jdk:invokeStatic
-8. Is it possible to turn off Autowired in AnnotationConfigApplicationContext?
+
+    spring-beans / InstantiationStrategy
+
+8. @Profile: If the conditions are inconsistent, only the condition on the first declaration among the overloaded methods matters. Couldn't reproduce.
+
+
+TODO
+- Resources: app.properties, /app.properties, classpath:app.properties, file:app.properties
+
