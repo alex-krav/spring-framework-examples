@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+<!--    <bean id="lister" class="org.example.core.ioc.required.SimpleMovieLister" />-->
+
+<!--    <bean id="customerPreferencesDao" class="org.example.core.ioc.required.CustomerPreferenceDao" />-->
+    <bean id="movieCatalog1" class="org.example.core.ioc.required.MovieCatalog" />
+    <bean id="movieCatalog2" class="org.example.core.ioc.required.MovieCatalog" primary="true" />
+
+    <bean id="recommender" class="org.example.core.ioc.required.MovieRecommender" />
+
+</beans>

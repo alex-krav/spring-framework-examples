@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bean1" name="a b c" class="org.example.core.ioc.service.UserService" />
+
+    <alias name="bean1" alias="app-bean1" />
+
+    <bean id="nested" class="org.example.core.ioc.service.SomeThing.NestedThing" />
+<!--    <bean id="inner" class="org.example.core.ioc.service.SomeThing.InnerThing" />-->
+
+    <bean id="clientService1" class="org.example.core.ioc.service.ClientService" factory-method="createInstance"/>
+    <bean id="clientService2" class="org.example.core.ioc.service.ClientService" factory-method="createInstanceOfAnotherClass"/>
+
+    <bean id="serviceLocator" class="org.example.core.ioc.service.DefaultServiceLocator" />
+    <bean id="clientService" factory-bean="serviceLocator" factory-method="createClientServiceInstance"/>
+
+</beans>
