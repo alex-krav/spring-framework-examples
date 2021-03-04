@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dependent" class="org.example.core.validation.DependsOnExoticType">
+        <property name="type" value="aNameForExoticType"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <!--<property name="customEditors">
+            <map>
+                <entry key="org.example.core.validation.ExoticType" value="org.example.core.validation.ExoticTypeEditor"/>
+            </map>
+        </property>-->
+        <property name="propertyEditorRegistrars">
+            <list>
+                <ref bean="customPropertyEditorRegistrar"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="customPropertyEditorRegistrar"
+          class="org.example.core.validation.CustomPropertyEditorRegistrar"/>
+
+</beans>
