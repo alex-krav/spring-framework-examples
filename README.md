@@ -1,4 +1,4 @@
-LINKS
+### LINKS
 
 https://www.infoworld.com/article/3379043/what-is-jpa-introduction-to-the-java-persistence-api.html
 https://www.tutorialspoint.com/jpa/jpa_orm_components.htm
@@ -22,33 +22,33 @@ https://habr.com/ru/post/222579/
 https://habr.com/ru/company/jugru/blog/218203/
 https://habr.com/ru/post/490586/
 
-GIT
+### GIT
 
-Syncing a fork
+#### Syncing a fork
 git remote -v 
 git remote add upstream git@github.com:spring-projects/spring-framework.git
 git fetch upstream
 git checkout master
 git merge upstream/master
 
-Pushing branch
+#### Pushing branch
 git branch -r
 git push --set-upstream origin docs/InnerClassNames
 
 
-Accessing differently scoped target beans
+### Accessing differently scoped target beans
 - lookup method injection
 - ObjectFactory/ Provider injection point
 - org.springframework.beans.factory.config.ServiceLocatorFactoryBean
 
 
-XML configuration
+### XML configuration
 - doesn't modify source code
 - hierarchy (abstract beans)
 - instance-based (different instantiations of same class)
 
 
-@Bean
+### @Bean
     @Configuration
         CGLIB
         inter-bean dependencies
@@ -57,22 +57,23 @@ XML configuration
         operate on their containing component’s internal state and, optionally, on arguments that they may declare
 
 
-Lifecycle order
+### Lifecycle order
 - @PostConstruct
 - InitializingBean::afterPropertiesSet()
 - custom init() method
+
 
 - @PreDestroy
 - DisposableBean::destroy()
 - custom destroy() method
 
-Properties
+### Properties
 - JVM system properties:    System.getProperties(): -D command-line args
 - JVM system environment:   System.getenv():        OS env variables
 - properties files
 
 
-TODO (done)
+### TODO (done)
 + 1. The @Bean methods in a regular Spring component are processed differently than their counterparts inside a Spring @Configuration class.
 + 2. @Configuration classes are subclassed at startup-time with CGLIB
 + 3. Calls to static @Bean methods never get intercepted by the container, not even within @Configuration classes (as described earlier in this section), due to technical limitations: CGLIB subclassing can override only non-static methods.
@@ -100,6 +101,14 @@ TODO (done)
 8. @Profile: If the conditions are inconsistent, only the condition on the first declaration among the overloaded methods matters. Couldn't reproduce.
 
 
-TODO
-- Resources: app.properties, /app.properties, classpath:app.properties, file:app.properties
+### Conversion
+- java.beans.PropertyEditor
+- Conversion
+      - Converter SPI, ConverterFactory, GenericConverter, ConditionalGenericConverter
+      - ConversionService API
+
+### Formatting
+- java.beans.PropertyEditor
+- Formatter 
+
 
