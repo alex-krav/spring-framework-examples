@@ -111,4 +111,6 @@ git push --set-upstream origin docs/InnerClassNames
 - java.beans.PropertyEditor
 - Formatter 
 
+### Validation
+Method validation relies on AOP Proxies around the target classes, either JDK dynamic proxies for methods on interfaces or CGLIB proxies.
 
